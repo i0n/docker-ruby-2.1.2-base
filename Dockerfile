@@ -3,7 +3,7 @@
 #
 
 # Pull base image.
-FROM chriswessels/base
+FROM humongousdb/base
 
 # Install Ruby.
 RUN           apt-get -y update && \
@@ -11,10 +11,11 @@ RUN           apt-get -y update && \
               cd /tmp && \
               wget http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz && \ 
               tar -xvzf ruby-2.1.2.tar.gz && \
-              cd ruby-2.1.2/ && \
+              cd ruby-2.1.2 && \
               ./configure --prefix=/usr/local && \
               make && \
-              make install
+              make install && \
+              rm -rf ruby-2.1.2 
 
 # Install Bundler.
 RUN /bin/bash -l -c "gem install bundler --no-ri --no-rdoc"
